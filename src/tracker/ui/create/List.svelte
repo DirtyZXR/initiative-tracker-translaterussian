@@ -61,7 +61,7 @@
     };
 </script>
 
-<h5 class="list-header">Creatures</h5>
+<h5 class="list-header">Существа</h5>
 <div class="initiative-tracker-list">
     {#if $adding.length}
         {#each $adding as [creature, number], index}
@@ -115,7 +115,7 @@
             </div>
         {/each}
     {:else}
-        <span>Add a creature.</span>
+        <span>Добавьте существо.</span>
     {/if}
 </div>
 

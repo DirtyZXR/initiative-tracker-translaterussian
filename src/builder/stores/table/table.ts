@@ -73,29 +73,29 @@ export class TableHeader {
 
 export const DEFAULT_HEADERS: TableHeaderState[] = [
     {
-        text: "CR",
+        text: "ПО",
         field: "cr",
         type: SortFunctions.CONVERT_FRACTION
     },
     {
-        text: "Type",
+        text: "Тип",
         field: "type",
         type: SortFunctions.LOCAL_COMPARE
     },
     {
-        text: "Size",
+        text: "Размер",
         field: "size",
         type: SortFunctions.LOCAL_COMPARE
     },
     {
-        text: "Alignment",
+        text: "Мировоззрение",
         field: "alignment",
         type: SortFunctions.LOCAL_COMPARE
     }
 ];
 
 export const NAME_HEADER = TableHeader.fromState({
-    text: "Name",
+    text: "Имя",
     field: "name",
     type: SortFunctions.LOCAL_COMPARE
 });

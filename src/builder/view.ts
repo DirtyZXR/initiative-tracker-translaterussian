@@ -49,7 +49,7 @@ export default class BuilderView extends ItemView {
         ) {
             this.contentEl.addClasses(["waiting-for-bestiary", "is-loading"]);
             const loading = this.contentEl.createEl("p", {
-                text: "Waiting for Fantasy Statblocks Bestiary..."
+                text: "Ожидание бестиария Fantasy Statblocks..."
             });
             const unload = window["FantasyStatblocks"].onResolved(() => {
                 this.contentEl.removeClasses([

@@ -118,7 +118,7 @@
                         .setIsLabel(true);
                 });
                 menu.addItem((item) => {
-                    item.setTitle("None")
+                    item.setTitle("Нет")
                         .onClick(() => {
                             tracker.setParty("", plugin);
                         })
@@ -165,7 +165,7 @@
                     .setIsLabel(true);
             });
             menu.addItem((item) => {
-                item.setTitle("Always Roll")
+                item.setTitle("Всегда бросать")
                     .onClick(async () => {
                         plugin.data.rollPlayerInitiatives =
                             RollPlayerInitiativeBehavior.Always;
@@ -177,7 +177,7 @@
                     );
             });
             menu.addItem((item) => {
-                item.setTitle("Never Roll")
+                item.setTitle("Никогда не бросать")
                     .onClick(async () => {
                         plugin.data.rollPlayerInitiatives =
                             RollPlayerInitiativeBehavior.Never;
@@ -189,7 +189,7 @@
                     );
             });
             menu.addItem((item) => {
-                item.setTitle("Set to Zero")
+                item.setTitle("Ставить ноль")
                     .onClick(async () => {
                         plugin.data.rollPlayerInitiatives =
                             RollPlayerInitiativeBehavior.SetToZero;

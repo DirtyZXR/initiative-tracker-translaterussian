@@ -262,7 +262,7 @@ export default class InitiativeTracker extends Plugin {
             ) {
                 el.addClasses(["waiting-for-bestiary", "is-loading"]);
                 const loading = el.createEl("p", {
-                    text: "Waiting for Fantasy Statblocks Bestiary..."
+                    text: "Ожидание бестиария Fantasy Statblocks..."
                 });
                 const unload = window["FantasyStatblocks"].onResolved(() => {
                     el.removeClasses(["waiting-for-bestiary", "is-loading"]);
@@ -285,7 +285,7 @@ export default class InitiativeTracker extends Plugin {
                 ) {
                     el.addClasses(["waiting-for-bestiary", "is-loading"]);
                     const loading = el.createEl("p", {
-                        text: "Waiting for Fantasy Statblocks Bestiary..."
+                        text: "Ожидание бестиария Fantasy Statblocks..."
                     });
                     const unload = window["FantasyStatblocks"].onResolved(
                         () => {
@@ -342,7 +342,7 @@ export default class InitiativeTracker extends Plugin {
                         !parsed.creatures ||
                         !parsed.creatures.size
                     ) {
-                        target.setText("No creatures found.");
+                        target.setText("Существа не найдены.");
                         return;
                     }
                     new EncounterLine({
@@ -372,7 +372,7 @@ export default class InitiativeTracker extends Plugin {
                         "loader-2"
                     );
                     loading.createEl("em", {
-                        text: "Loading Bestiary..."
+                        text: "Загрузка бестиария..."
                     });
                     const unload = window["FantasyStatblocks"].onResolved(
                         () => {

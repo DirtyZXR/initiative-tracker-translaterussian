@@ -376,7 +376,7 @@ export class EncounterBlock extends MarkdownRenderChild {
         const encounters = this.src.split("---") ?? [];
         const containerEl = this.containerEl.createDiv("encounter-container");
         const empty = containerEl.createSpan({
-            text: "No encounters created. Please check your syntax and try again."
+            text: "Столкновения не созданы. Проверьте синтаксис и попробуйте снова."
         });
 
         for (let encounter of encounters) {
@@ -392,7 +392,7 @@ export class EncounterBlock extends MarkdownRenderChild {
             } catch (e) {
                 console.error(e);
                 new Notice(
-                    "Initiative Tracker: here was an issue parsing: \n\n" +
+                    "Initiative Tracker: ошибка разбора: \n\n" +
                         encounter
                 );
             }
@@ -408,7 +408,7 @@ export class EncounterBlock extends MarkdownRenderChild {
         const encounterSource = this.src.split("---") ?? [];
         const containerEl = this.containerEl.createDiv("encounter-container");
         const empty = containerEl.createSpan({
-            text: "No encounters created. Please check your syntax and try again."
+            text: "Столкновения не созданы. Проверьте синтаксис и попробуйте снова."
         });
 
         const encounters: ParsedParams[] = [];
@@ -421,7 +421,7 @@ export class EncounterBlock extends MarkdownRenderChild {
             } catch (e) {
                 console.error(e);
                 new Notice(
-                    "Initiative Tracker: here was an issue parsing: \n\n" +
+                    "Initiative Tracker: ошибка разбора: \n\n" +
                         encounter
                 );
             }

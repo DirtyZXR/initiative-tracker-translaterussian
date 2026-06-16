@@ -127,7 +127,7 @@ export class CreatureView extends ItemView {
     onload() {
         new ExtraButtonComponent(this.buttonEl)
             .setIcon("cross")
-            .setTooltip("Close Statblock")
+            .setTooltip("Закрыть статблок")
             .onClick(async () => {
                 await this.render();
                 this.app.workspace.trigger("initiative-tracker:stop-viewing");
@@ -207,7 +207,7 @@ export class CreatureView extends ItemView {
         ) {
             this.statblockEl.empty();
             this.statblockEl.createEl("em", {
-                text: "Loading bestiary\u2026"
+                text: "\u0417\u0430\u0433\u0440\u0443\u0437\u043a\u0430 \u0431\u0435\u0441\u0442\u0438\u0430\u0440\u0438\u044f\u2026"
             });
             const unload = window["FantasyStatblocks"].onResolved(() => {
                 this.bestiaryUnload = null;
@@ -226,7 +226,7 @@ export class CreatureView extends ItemView {
         this.statblockEl.empty();
         if (!creature) {
             this.statblockEl.createEl("em", {
-                text: "Select a creature to view it here."
+                text: "Выберите существо, чтобы посмотреть его здесь."
             });
             return;
         }
@@ -246,7 +246,7 @@ export class CreatureView extends ItemView {
             this.addChild(statblock);
         } else {
             this.statblockEl.createEl("em", {
-                text: "Install the TTRPG Statblocks plugin or add a statblock-link to your monster to use this feature!"
+                text: "Установите плагин TTRPG Statblocks или добавьте statblock-link к существу, чтобы использовать эту возможность!"
             });
         }
     }

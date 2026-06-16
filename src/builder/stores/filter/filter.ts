@@ -42,7 +42,7 @@ export type Filter = RangeFilter | OptionsFilter | StringFilter;
 export const DEFAULT_NEW_FILTER: Filter = {
     type: FilterType.Search,
     fields: [],
-    text: "New Filter",
+    text: "Новый фильтр",
     options: "",
     id: getId(),
     derive: false
@@ -423,7 +423,7 @@ export const name = writable<string>();
 
 const NAME_FILTER: StringFilter = {
     type: FilterType.Search,
-    text: "Name",
+    text: "Имя",
     fields: ["name"],
     options: "",
     id: "ID_DEFAULT_NAME_FILTER",
@@ -433,7 +433,7 @@ const NAME_FILTER: StringFilter = {
 export const DEFAULT_FILTERS: Filter[] = [
     {
         type: FilterType.Range,
-        text: "CR",
+        text: "ПО",
         fields: ["cr"],
         options: [0, 30],
         id: "ID_DEFAULT_CR_FILTER",
@@ -441,7 +441,7 @@ export const DEFAULT_FILTERS: Filter[] = [
     },
     {
         type: FilterType.Options,
-        text: "Size",
+        text: "Размер",
         fields: ["size"],
         options: [],
         id: "ID_DEFAULT_SIZE_FILTER",
@@ -449,7 +449,7 @@ export const DEFAULT_FILTERS: Filter[] = [
     },
     {
         type: FilterType.Options,
-        text: "Type",
+        text: "Тип",
         fields: ["type"],
         options: [],
         id: "ID_DEFAULT_TYPE_FILTER",
@@ -457,7 +457,7 @@ export const DEFAULT_FILTERS: Filter[] = [
     },
     {
         type: FilterType.Options,
-        text: "Alignment",
+        text: "Мировоззрение",
         fields: ["alignment"],
         options: [],
         id: "ID_DEFAULT_ALIGNMENT_FILTER",
