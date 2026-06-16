@@ -9,32 +9,32 @@ export class EditModal extends Modal {
     editor: EditorView;
     public canceled = false;
     onOpen() {
-        this.titleEl.setText(this.editing ? "Edit Header" : "Create Header");
+        this.titleEl.setText(this.editing ? "Изменить заголовок" : "Создать заголовок");
         this.display();
     }
     display() {
         this.contentEl.empty();
-        new Setting(this.contentEl).setName("Display Text").addText((t) =>
+        new Setting(this.contentEl).setName("Отображаемый текст").addText((t) =>
             t.setValue(this.header.text).onChange((v) => {
                 this.header.text = v;
             })
         );
         new Setting(this.contentEl)
-            .setName("Linked Property")
+            .setName("Связанное свойство")
             .addText((t) =>
                 t
                     .setValue(this.header.field)
                     .onChange((v) => (this.header.field = v))
             );
         new Setting(this.contentEl)
-            .setName("Sort Type")
+            .setName("Тип сортировки")
             .setDesc(
-                "This determines how the field is sorted. Use the appropriate type for the data type of the field."
+                "Определяет, как сортируется поле. Используйте тип, соответствующий типу данных поля."
             )
             .addDropdown((t) => {
-                t.addOption(`${SortFunctions.LOCAL_COMPARE}`, "String");
-                t.addOption(`${SortFunctions.CONVERT_FRACTION}`, "Number");
-                t.addOption(`${SortFunctions.CUSTOM}`, "Custom");
+                t.addOption(`${SortFunctions.LOCAL_COMPARE}`, "Строка");
+                t.addOption(`${SortFunctions.CONVERT_FRACTION}`, "Число");
+                t.addOption(`${SortFunctions.CUSTOM}`, "Пользовательский");
                 t.setValue(`${this.header.type}`).onChange((v) => {
                     this.header.type = Number(v);
                     if (this.header.type == SortFunctions.CUSTOM) {
@@ -47,23 +47,23 @@ export class EditModal extends Modal {
             });
         if ("func" in this.header) {
             new Setting(this.contentEl)
-                .setName("Custom Sorting Function")
+                .setName("Пользовательская функция сортировки")
                 .setDesc(
                     createFragment((e) => {
                         e.createSpan({
-                            text: "Specify a custom sorting JavaScript function."
+                            text: "Задайте собственную JavaScript-функцию сортировки."
                         });
                         e.createEl("br");
                         e.createEl("br");
 
                         e.createSpan({
-                            text: "This function receives two monster objects, "
+                            text: "Эта функция получает два объекта монстров, "
                         });
                         e.createEl("code", { text: "a" });
-                        e.createSpan({ text: " and " });
+                        e.createSpan({ text: " и " });
                         e.createEl("code", { text: "b" });
                         e.createSpan({
-                            text: ", and must return a number. The number determines sort order."
+                            text: ", и должна возвращать число. Это число определяет порядок сортировки."
                         });
                     })
                 );
@@ -81,7 +81,7 @@ export class EditModal extends Modal {
             );
         }
         new Setting(this.contentEl).addButton((b) => {
-            b.setButtonText("Cancel")
+            b.setButtonText("Отмена")
                 .setCta()
                 .onClick(() => {
                     this.canceled = true;

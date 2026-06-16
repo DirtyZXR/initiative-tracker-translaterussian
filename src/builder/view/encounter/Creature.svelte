@@ -73,14 +73,14 @@
             <div
                 class="contains-icon"
                 use:hideIcon
-                aria-label={`This creature is hidden.`}
+                aria-label={`Это существо скрыто.`}
             />
         {/if}
         {#if creature.friendly}
             <div
                 class="contains-icon"
                 use:friendIcon
-                aria-label={`This creature is an ally.`}
+                aria-label={`Это существо — союзник.`}
             />
         {/if}
         <strong class="encounter-creature-name" on:click={open}>
@@ -91,8 +91,8 @@
                 class="contains-icon"
                 use:baby
                 aria-label={`${
-                    count > 1 ? "These creatures are" : "This creature is"
-                } significantly under the average party level and might not contribute much to the fight.`}
+                    count > 1 ? "Эти существа" : "Это существо"
+                } значительно ниже среднего уровня отряда и вряд ли существенно повлияют на бой.`}
             />
         {/if}
         {#if challenge}
@@ -100,8 +100,8 @@
                 class="contains-icon"
                 use:skull
                 aria-label={`${
-                    count > 1 ? "These creatures are" : "This creature is"
-                } significantly over the average party level and might prove a challenge.`}
+                    count > 1 ? "Эти существа" : "Это существо"
+                } значительно выше среднего уровня отряда и могут стать серьёзным испытанием.`}
             />
         {/if}
     </div>

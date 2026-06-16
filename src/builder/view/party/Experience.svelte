@@ -36,7 +36,7 @@
             (plugin.data.builder.showXP = !plugin.data.builder.showXP)}
     >
         <div class="title-container" slot="title">
-            <h5 class="title">Experience</h5>
+            <h5 class="title">Опыт</h5>
             <span>
                 {#if plugin.data.rpgSystem != RpgSystemSetting.Dnd5e}
                     ({rpgSystem.displayName})
@@ -44,9 +44,7 @@
             </span>
             {#if filtered > 0}
                 <span class="filtered"
-                    >Filtering {filtered} allied creature{filtered > 1
-                        ? "s"
-                        : ""}</span
+                    >Отфильтровано союзных существ: {filtered}</span
                 >
             {/if}
         </div>
@@ -54,7 +52,7 @@
             <div class="xp">
                 <div class="encounter-difficulty">
                     <div class="difficulty container">
-                        <strong class="header">Difficulty</strong>
+                        <strong class="header">Сложность</strong>
                         <span>{difficulty.displayName}</span>
                     </div>
                     {#each difficulty.intermediateValues as intermediate}

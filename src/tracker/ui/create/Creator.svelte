@@ -22,7 +22,7 @@
     const cancel = (node: HTMLElement) => {
         new ButtonComponent(node)
             .setCta()
-            .setButtonText("Cancel")
+            .setButtonText("Отмена")
             .onClick(() => {
                 dispatch("close");
             });
@@ -30,7 +30,7 @@
 
     const add = (node: HTMLElement) => {
         new ButtonComponent(node)
-            .setButtonText(isEditing ? "Save" : "Add to Encounter")
+            .setButtonText(isEditing ? "Сохранить" : "Добавить в столкновение")
             .onClick(async () => {
                 if (!$adding.length && !isEditing && !Platform.isMobile) return;
                 if (isEditing) {
@@ -88,7 +88,7 @@
                         id="roll-hp"
                         bind:checked={rollHP}
                     />
-                    <label for="roll-hp">Roll for HP</label>
+                    <label for="roll-hp">Бросок хитов</label>
                 </div>
             </div>
         {/if}

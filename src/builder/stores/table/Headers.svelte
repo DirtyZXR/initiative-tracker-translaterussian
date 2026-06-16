@@ -123,7 +123,7 @@
             );
     };
     const add = (node: HTMLElement) => {
-        new Setting(node).setName("Add Header").addExtraButton((b) =>
+        new Setting(node).setName("Добавить заголовок").addExtraButton((b) =>
             b.setIcon("plus-circle").onClick(async () => {
                 const state = await openModal();
                 if (
@@ -143,8 +143,8 @@
     };
     const reset = (node: HTMLElement) => {
         new Setting(node)
-            .setName("Reset Headers")
-            .setDesc("Reset table headers to defaults.")
+            .setName("Сбросить заголовки")
+            .setDesc("Сбросить заголовки таблицы к значениям по умолчанию.")
             .addExtraButton((b) =>
                 b.setIcon("reset").onClick(() => {
                     dispatch("reset");
@@ -152,7 +152,7 @@
             );
     };
     const cancel = (node: HTMLElement) => {
-        new ButtonComponent(node).setButtonText("Cancel").setCta();
+        new ButtonComponent(node).setButtonText("Отмена").setCta();
     };
 </script>
 
@@ -162,7 +162,7 @@
 
 <p>
     <small>
-        Organize your headers here. Headers can be drag-and-dropped!
+        Здесь можно настроить заголовки. Заголовки можно перетаскивать!
     </small>
 </p>
 <div class="header-container">

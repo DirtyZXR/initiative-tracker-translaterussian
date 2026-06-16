@@ -39,7 +39,7 @@
             {creature.name}{count == 1 ? "" : "s"}
         {/if}
         {#if shouldShowRoll && creature.hit_dice?.length}
-            <span class="has-icon" aria-label="Rolling for HP" use:rollEl />
+            <span class="has-icon" aria-label="Бросок хитов" use:rollEl />
         {/if}
     </span>
     {#if xp}

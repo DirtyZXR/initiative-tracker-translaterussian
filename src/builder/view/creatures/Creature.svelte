@@ -50,7 +50,7 @@
         if (!Array.isArray(source)) return source;
         let sliced = source.slice(0, 2);
         if (source.length > 2) {
-            sliced.push(`and ${source.length - 2} more`);
+            sliced.push(`и ещё ${source.length - 2}`);
         }
 
         return stringify(sliced, 0, ", ", false);
@@ -88,14 +88,14 @@
                     <div
                         class="contains-icon"
                         use:baby
-                        aria-label={"This creature is significantly under the average party level and might not contribute much to the fight."}
+                        aria-label={"Это существо значительно ниже среднего уровня отряда и вряд ли существенно повлияет на бой."}
                     />
                 {/if}
                 {#if challenge}
                     <div
                         class="contains-icon"
                         use:skull
-                        aria-label={"This creature is significantly over the average party level and might prove a challenge."}
+                        aria-label={"Это существо значительно выше среднего уровня отряда и может стать серьёзным испытанием."}
                     />
                 {/if}
             </div>

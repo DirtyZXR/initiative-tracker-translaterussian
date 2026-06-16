@@ -14,7 +14,7 @@
     import type { StackRoller } from "@javalent/dice-roller";
     import { setContext } from "svelte";
 
-    export let name: string = "Encounter";
+    export let name: string = "Столкновение";
     export let creatures: Map<Creature, number | string>;
     export let players: string[];
 
@@ -54,7 +54,7 @@
     const open = (node: HTMLElement) => {
         new ExtraButtonComponent(node)
             .setIcon(START_ENCOUNTER)
-            .setTooltip("Begin Encounter")
+            .setTooltip("Начать столкновение")
             .onClick(async () => {
                 if (!plugin.view) {
                     await plugin.addTrackerView();
@@ -133,13 +133,13 @@
         if (!creature) return;
         let label = [];
         if (creature.hp) {
-            label.push(`HP: ${creature.hp}`);
+            label.push(`Хиты: ${creature.hp}`);
         }
         if (creature.ac) {
-            label.push(`AC: ${creature.ac}`);
+            label.push(`КД: ${creature.ac}`);
         }
         if (creature.modifier) {
-            label.push(`MOD: ${creature.modifier}`);
+            label.push(`Мод: ${creature.modifier}`);
         }
         return `${label.join(", ")}`;
     };
@@ -215,7 +215,7 @@
     <td>
         <div class="icons">
             <div use:open />
-            <div use:addButton on:click={add} aria-label="Add to Encounter" />
+            <div use:addButton on:click={add} aria-label="Добавить в столкновение" />
         </div>
     </td>
 </tr>

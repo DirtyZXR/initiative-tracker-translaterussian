@@ -71,10 +71,10 @@
             <td
                 style="width: 10%;"
                 use:diceIcon
-                aria-label="Re-Roll Initiatives"
+                aria-label="Перебросить инициативу"
                 on:click={(evt) => tracker.roll(plugin)}
             />
-            <th class="left" style="width:55%">Name</th>
+            <th class="left" style="width:55%">Имя</th>
             <th style="width:15%" use:hpIcon class="center" />
             <th style="width:15%" use:acIcon class="center" />
             <th style="width:5%" />
@@ -119,8 +119,8 @@
         </tbody>
     {:else}
         <div class="no-creatures">
-            <p>Add a creature to get started!</p>
-            <small>Players may be created in settings.</small>
+            <p>Добавьте существо, чтобы начать!</p>
+            <small>Игроков можно создать в настройках.</small>
         </div>
     {/if}
 </table>

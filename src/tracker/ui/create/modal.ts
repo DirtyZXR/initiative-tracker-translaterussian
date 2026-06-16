@@ -24,8 +24,8 @@ export async function confirmWithModal(
     app: App,
     text: string,
     buttons: { cta: string; secondary: string } = {
-        cta: "Yes",
-        secondary: "No"
+        cta: "Да",
+        secondary: "Нет"
     }
 ): Promise<boolean> {
     return new Promise((resolve, reject) => {

@@ -14,7 +14,7 @@
 
     setContext("plugin", plugin);
 
-    export let name: string = "Encounter";
+    export let name: string = "Столкновение";
     export let creatures: Map<Creature, number | string> = new Map();
     export let players: string[];
     export let party: string = null;
@@ -139,13 +139,13 @@
         if (!creature) return;
         let label = [];
         if (creature.hp) {
-            label.push(`HP: ${creature.hp}`);
+            label.push(`Хиты: ${creature.hp}`);
         }
         if (creature.ac) {
-            label.push(`AC: ${creature.ac}`);
+            label.push(`КД: ${creature.ac}`);
         }
         if (creature.modifier) {
-            label.push(`MOD: ${creature.modifier}`);
+            label.push(`Мод: ${creature.modifier}`);
         }
         return `${label.join(", ")}`;
     };
@@ -164,15 +164,15 @@
     <div class="encounter-name">
         <h3 data-heading={name} class="initiative-tracker-name">{name}</h3>
         <div class="icons">
-            <div use:openButton on:click={open} aria-label="Start Encounter" />
-            <div use:addButton on:click={add} aria-label="Add to Encounter" />
+            <div use:openButton on:click={open} aria-label="Начать столкновение" />
+            <div use:addButton on:click={add} aria-label="Добавить в столкновение" />
         </div>
     </div>
     <div class="creatures-container">
         {#if !hide.includes("players")}
             {#if players instanceof Array && players.length}
                 <div class="encounter-creatures encounter-players">
-                    <h4>{party ? party : "Players"}</h4>
+                    <h4>{party ? party : "Игроки"}</h4>
                     <ul>
                         {#each players as player}
                             <li>
@@ -183,18 +183,18 @@
                 </div>
             {:else if !players}
                 <div class="encounter-creatures encounter-players">
-                    <h4>No Players</h4>
+                    <h4>Нет игроков</h4>
                 </div>
             {/if}
         {/if}
         <div class="encounter-creatures">
             {#if !hide.includes("creatures")}
                 <h4 class="creatures-header">
-                    Creatures
+                    Существа
                     {#if allRolling}
                         <span
                             class="has-icon"
-                            aria-label="Rolling for HP"
+                            aria-label="Бросок хитов"
                             use:rollEl
                         />
                     {/if}
@@ -224,7 +224,7 @@
                         {/each}
                     </ul>
                 {:else}
-                    <strong>No creatures</strong>
+                    <strong>Нет существ</strong>
                 {/if}
             {/if}
         </div>

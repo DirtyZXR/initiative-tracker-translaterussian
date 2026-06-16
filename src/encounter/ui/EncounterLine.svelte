@@ -109,13 +109,13 @@
         if (!creature) return;
         let label = [];
         if (creature.hp) {
-            label.push(`HP: ${creature.hp}`);
+            label.push(`Хиты: ${creature.hp}`);
         }
         if (creature.ac) {
-            label.push(`AC: ${creature.ac}`);
+            label.push(`КД: ${creature.ac}`);
         }
         if (creature.modifier) {
-            label.push(`MOD: ${creature.modifier}`);
+            label.push(`Мод: ${creature.modifier}`);
         }
         return `${label.join(", ")}`;
     };
@@ -150,12 +150,12 @@
         <span
             use:openButton
             on:click|stopPropagation={open}
-            aria-label="Begin Encounter"
+            aria-label="Начать столкновение"
         />
         <span
             use:addButton
             on:click|stopPropagation={add}
-            aria-label="Add to Encounter"
+            aria-label="Добавить в столкновение"
         />
     </span>
 </span>

@@ -53,7 +53,7 @@ export default class InitiativeTracker extends Plugin {
         if (window.DiceRoller != null) {
             if (!window.DiceRoller.getRoller) {
                 new Notice(
-                    "Please update Dice Roller to the latest version to use with Initiative Tracker."
+                    "Обновите Dice Roller до последней версии для работы с Initiative Tracker."
                 );
             } else {
                 return true;
@@ -130,7 +130,7 @@ export default class InitiativeTracker extends Plugin {
     registerCommand(encounter: string) {
         this.addCommand({
             id: `start-${encounter}`,
-            name: `Start ${encounter}`,
+            name: `Начать: ${encounter}`,
             checkCallback: (checking) => {
                 // checking if the command should appear in the Command Palette
                 if (checking) {
@@ -410,7 +410,7 @@ export default class InitiativeTracker extends Plugin {
                     !this.app.metadataCache.getFileCache(file)?.frontmatter
                 ) {
                     new Notice(
-                        `Initiative Tracker: There was an issue with the linked note for ${player.name}.\n\nPlease re-link it in settings.`
+                        `Initiative Tracker: проблема со связанной заметкой для ${player.name}.\n\nПереназначьте её в настройках.`
                     );
                     continue;
                 }
@@ -490,7 +490,7 @@ export default class InitiativeTracker extends Plugin {
     addCommands() {
         this.addCommand({
             id: "open-tracker",
-            name: "Open Initiative Tracker",
+            name: "Открыть трекер инициативы",
             checkCallback: (checking) => {
                 if (!this.view) {
                     if (!checking) {
@@ -502,7 +502,7 @@ export default class InitiativeTracker extends Plugin {
         });
         this.addCommand({
             id: "open-builder",
-            name: "Open Encounter Builder",
+            name: "Открыть конструктор столкновений",
             checkCallback: (checking) => {
                 if (!this.builder) {
                     if (!checking) {
@@ -515,7 +515,7 @@ export default class InitiativeTracker extends Plugin {
 
         this.addCommand({
             id: "toggle-encounter",
-            name: "Toggle Encounter",
+            name: "Переключить состояние боя",
             checkCallback: (checking) => {
                 const view = this.view;
                 if (view) {
@@ -529,7 +529,7 @@ export default class InitiativeTracker extends Plugin {
 
         this.addCommand({
             id: "next-combatant",
-            name: "Next Combatant",
+            name: "Следующий участник",
             checkCallback: (checking) => {
                 const view = this.view;
                 if (view && tracker.getState()) {
@@ -543,7 +543,7 @@ export default class InitiativeTracker extends Plugin {
 
         this.addCommand({
             id: "prev-combatant",
-            name: "Previous Combatant",
+            name: "Предыдущий участник",
             checkCallback: (checking) => {
                 const view = this.view;
                 if (view && tracker.getState()) {
@@ -601,12 +601,12 @@ export default class InitiativeTracker extends Plugin {
                             this.app.workspace.revealLeaf(view.leaf);
                         } else {
                             new Notice(
-                                "Could not find the Initiative Tracker. Try reloading the note!"
+                                "Не удалось найти трекер инициативы. Попробуйте перезагрузить заметку!"
                             );
                         }
                     } catch (e) {
                         new Notice(
-                            "There was an issue launching the encounter.\n\n" +
+                            "Не удалось запустить столкновение.\n\n" +
                                 (e as Error).message
                         );
                         console.error(e);

@@ -18,7 +18,7 @@
     const dispatch = createEventDispatcher<{ cancel: null; update: Filter }>();
 
     const reset = (node: HTMLElement) => {
-        new Setting(node).setName("Reset").addExtraButton((b) => {
+        new Setting(node).setName("Сбросить").addExtraButton((b) => {
             b.setIcon("reset").onClick(() => {
                 filter = copy(original);
             });
@@ -26,10 +26,10 @@
     };
 
     const type = (node: HTMLElement) => {
-        new Setting(node).setName("Filter Type").addDropdown((d) => {
-            d.addOption(`${FilterType.Range}`, "Range");
-            d.addOption(`${FilterType.Options}`, "Options");
-            d.addOption(`${FilterType.Search}`, "Search");
+        new Setting(node).setName("Тип фильтра").addDropdown((d) => {
+            d.addOption(`${FilterType.Range}`, "Диапазон");
+            d.addOption(`${FilterType.Options}`, "Варианты");
+            d.addOption(`${FilterType.Search}`, "Поиск");
             d.setValue(`${filter.type}`).onChange((v) => {
                 filter.type = Number(v);
                 switch (filter.type) {
@@ -47,7 +47,7 @@
         });
     };
     const text = (node: HTMLElement) => {
-        new Setting(node).setName("Display Text").addText((t) => {
+        new Setting(node).setName("Отображаемый текст").addText((t) => {
             t.setValue(filter.text).onChange((v) => (filter.text = v));
         });
     };
@@ -59,7 +59,7 @@
         const opts = filter;
         let input: TextComponent;
         new Setting(node)
-            .setName("Fields")
+            .setName("Поля")
             .addText((t) => {
                 input = t.onChange((v) => ($field = v));
             })
@@ -69,10 +69,10 @@
                         if (opts.fields.includes($field)) {
                             new Notice(
                                 createFragment((e) => {
-                                    e.createSpan({ text: "The field " });
+                                    e.createSpan({ text: "Поле " });
                                     e.createEl("code", { text: $field });
                                     e.createSpan(
-                                        " has already been added to the options for this filter."
+                                        " уже добавлено в параметры этого фильтра."
                                     );
                                 })
                             );
@@ -90,13 +90,13 @@
     };
     const derive = (node: HTMLElement) => {
         if (filter.type == FilterType.Search) return;
-        new Setting(node).setName("Derive Options").addToggle((t) => {
+        new Setting(node).setName("Выводить варианты автоматически").addToggle((t) => {
             t.setValue(filter.derive).onChange((v) => (filter.derive = v));
         });
     };
     const options = (node: HTMLElement) => {
         new Setting(node)
-            .setName("Options")
+            .setName("Варианты")
             .addText((t) => t)
             .addExtraButton((b) => b.setIcon("plus-circle"));
     };
@@ -107,7 +107,7 @@
         if (filter.type != FilterType.Range) return;
         const range = filter;
         new Setting(node)
-            .setName("Options")
+            .setName("Варианты")
             .addText(
                 (t) =>
                     (t
@@ -126,7 +126,7 @@
             );
     };
     const cancel = (node: HTMLElement) => {
-        new ButtonComponent(node).setButtonText("Cancel").setCta();
+        new ButtonComponent(node).setButtonText("Отмена").setCta();
     };
     $: dispatch("update", filter);
 </script>

@@ -29,25 +29,25 @@
     const playButton = (node: HTMLElement) => {
         new ExtraButtonComponent(node)
             .setIcon(PLAY)
-            .setTooltip("Play")
+            .setTooltip("Старт")
             .onClick(() => tracker.setState(true));
     };
     const stopButton = (node: HTMLElement) => {
         new ExtraButtonComponent(node)
             .setIcon(STOP)
-            .setTooltip("Stop")
+            .setTooltip("Стоп")
             .onClick(() => tracker.setState(false));
     };
     const nextButton = (node: HTMLElement) => {
         new ExtraButtonComponent(node)
             .setIcon(FORWARD)
-            .setTooltip("Next")
+            .setTooltip("Дальше")
             .onClick(() => tracker.goToNext());
     };
     const prevButton = (node: HTMLElement) => {
         new ExtraButtonComponent(node)
             .setIcon(BACKWARD)
-            .setTooltip("Previous")
+            .setTooltip("Назад")
             .onClick(() => tracker.goToPrevious());
     };
 
@@ -59,30 +59,30 @@
         const menu = new Menu();
         menu.addItem((item) => {
             item.setIcon(NEW)
-                .setTitle("New Encounter")
+                .setTitle("Новое столкновение")
                 .onClick(() => tracker.new(plugin));
         });
         menu.addItem((item) => {
             item.setIcon(NEW)
-                .setTitle("Add Creatures")
+                .setTitle("Добавить существ")
                 .onClick(() => dispatch("add-creatures"));
         });
         menu.addItem((item) => {
             item.setIcon(REDO)
-                .setTitle("Reset HP / Status")
+                .setTitle("Сбросить хиты / состояния")
                 .onClick(() => tracker.reset());
         });
         menu.addItem((item) => {
             item.setIcon(DICE)
-                .setTitle("Re-roll Initiatives")
+                .setTitle("Перебросить инициативу")
                 .onClick(() => tracker.roll(plugin));
         });
         menu.addItem((item) => {
             item.setIcon(GROUP)
                 .setTitle(
                     plugin.data.condense
-                        ? "Expand Creatures"
-                        : "Group Creatures"
+                        ? "Развернуть существ"
+                        : "Сгруппировать существ"
                 )
                 .onClick(async () => {
                     plugin.data.condense = !plugin.data.condense;
@@ -90,20 +90,20 @@
                     item.setIcon(plugin.data.condense ? EXPAND : GROUP);
                     item.setTitle(
                         plugin.data.condense
-                            ? "Expand Creatures"
-                            : "Group Creatures"
+                            ? "Развернуть существ"
+                            : "Сгруппировать существ"
                     );
                 });
         });
         menu.addItem((item) => {
-            item.setTitle($sort ? "Sort Ascending" : "Sort Descending").onClick(
+            item.setTitle($sort ? "По возрастанию" : "По убыванию").onClick(
                 async () => {
                     plugin.data.descending = !plugin.data.descending;
                     await plugin.saveSettings();
                     item.setTitle(
                         plugin.data.descending
-                            ? "Sort Ascending"
-                            : "Sort Descending"
+                            ? "По возрастанию"
+                            : "По убыванию"
                     );
                 }
             );
@@ -114,7 +114,7 @@
             if (Platform.isMobile) {
                 menu.addItem((item) => {
                     /* const partyMenu =  */ item.setIcon("switch")
-                        .setTitle("Switch Party")
+                        .setTitle("Сменить отряд")
                         .setIsLabel(true);
                 });
                 menu.addItem((item) => {
@@ -137,10 +137,10 @@
                 menu.addItem((item) => {
                     const partyMenu = item
                         .setIcon("switch")
-                        .setTitle("Switch Party")
+                        .setTitle("Сменить отряд")
                         .setSubmenu();
                     partyMenu.addItem((item) => {
-                        item.setTitle("None")
+                        item.setTitle("Нет")
                             .onClick(() => {
                                 tracker.setParty("", plugin);
                             })
@@ -161,7 +161,7 @@
         if (Platform.isMobile) {
             menu.addItem((item) => {
                 item.setIcon("dice")
-                    .setTitle("Party Rolling Behavior")
+                    .setTitle("Бросок инициативы отряда")
                     .setIsLabel(true);
             });
             menu.addItem((item) => {
@@ -204,11 +204,11 @@
             menu.addItem((item) => {
                 const partyMenu = item
                     .setIcon("dice")
-                    .setTitle("Party Rolling Behavior")
+                    .setTitle("Бросок инициативы отряда")
                     .setSubmenu();
 
                 partyMenu.addItem((item) => {
-                    item.setTitle("Always Roll")
+                    item.setTitle("Всегда бросать")
                         .onClick(async () => {
                             plugin.data.rollPlayerInitiatives =
                                 RollPlayerInitiativeBehavior.Always;
@@ -220,7 +220,7 @@
                         );
                 });
                 partyMenu.addItem((item) => {
-                    item.setTitle("Never Roll")
+                    item.setTitle("Никогда не бросать")
                         .onClick(async () => {
                             plugin.data.rollPlayerInitiatives =
                                 RollPlayerInitiativeBehavior.Never;
@@ -232,7 +232,7 @@
                         );
                 });
                 partyMenu.addItem((item) => {
-                    item.setTitle("Set to Zero")
+                    item.setTitle("Ставить ноль")
                         .onClick(async () => {
                             plugin.data.rollPlayerInitiatives =
                                 RollPlayerInitiativeBehavior.SetToZero;
@@ -251,7 +251,7 @@
             menu.addItem((item) => {
                 const load = item
                     .setIcon("open-elsewhere-glyph")
-                    .setTitle("Load Encounter")
+                    .setTitle("Загрузить столкновение")
                     .setDisabled(
                         Object.keys(plugin.data.encounters).length == 0
                     )
@@ -272,7 +272,7 @@
         } else {
             menu.addItem((item) => {
                 item.setIcon("open-elsewhere-glyph")
-                    .setTitle("Load Encounter")
+                    .setTitle("Загрузить столкновение")
                     .setIsLabel(true);
             });
             for (const encounter of Object.keys(plugin.data.encounters)) {
@@ -285,7 +285,7 @@
         }
         menu.addItem((item) => {
             item.setIcon(SAVE)
-                .setTitle("Save Encounter")
+                .setTitle("Сохранить столкновение")
                 .onClick(() => {
                     dispatch("save");
                 });
@@ -325,7 +325,7 @@
         {#if $logFile}
             <div
                 use:logFileButton
-                aria-label="Open Log File"
+                aria-label="Открыть файл журнала"
                 on:click={openLogFile}
             />
         {/if}
@@ -333,7 +333,7 @@
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div
                 use:playerView
-                aria-label="Open Player View"
+                aria-label="Открыть экран игрока"
                 on:click={(evt) => dispatch("player-view")}
             />
         {/if}

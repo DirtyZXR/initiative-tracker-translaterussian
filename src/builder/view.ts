@@ -78,7 +78,7 @@ export default class BuilderView extends ItemView {
         this.ui?.$destroy();
     }
     getDisplayText(): string {
-        return "Encounter Builder";
+        return "Конструктор столкновений";
     }
     getIcon(): string {
         return BUILDER_VIEW;

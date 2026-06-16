@@ -9,7 +9,7 @@
     const plugin = getContext<InitiativeTracker>("plugin");
 
     const cancel = (node: HTMLElement) => {
-        new ExtraButtonComponent(node).setIcon("cross").setTooltip("Cancel");
+        new ExtraButtonComponent(node).setIcon("cross").setTooltip("Отмена");
     };
 
     $: encounters = plugin.data.encounters;
@@ -17,7 +17,7 @@
     const load = (node: HTMLElement, encounter: string) => {
         new ExtraButtonComponent(node)
             .setIcon("open-elsewhere-glyph")
-            .setTooltip("Load Encounter")
+            .setTooltip("Загрузить столкновение")
             .onClick(() => {
                 tracker.new(plugin, encounters[encounter]);
                 dispatch("cancel");
@@ -26,7 +26,7 @@
     const trash = (node: HTMLElement, encounter: string) => {
         new ExtraButtonComponent(node)
             .setIcon("trash")
-            .setTooltip("Delete Encounter")
+            .setTooltip("Удалить столкновение")
             .onClick(() => {
                 plugin.removeEncounter(encounter);
                 encounters = plugin.data.encounters;
@@ -36,13 +36,13 @@
 
 <div class="loading-container">
     <div class="controls">
-        <h4>Load An Encounter</h4>
+        <h4>Загрузить столкновение</h4>
         <div use:cancel on:click={() => dispatch("cancel")} />
     </div>
     <div class="encounter-container">
         {#if !encounters || !Object.keys(encounters)?.length}
             <span class="no-encounters">
-                <em>There are no saved encounters.</em>
+                <em>Нет сохранённых столкновений.</em>
             </span>
         {/if}
         {#each Object.keys(encounters) as encounter (encounter)}

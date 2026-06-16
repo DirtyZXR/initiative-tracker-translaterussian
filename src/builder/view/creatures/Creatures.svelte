@@ -32,18 +32,18 @@
     const settingsMenu = (evt: CustomEvent<MouseEvent>) => {
         const menu = new Menu();
         menu.addItem((item) => {
-            item.setTitle("Edit Headers").onClick(() => {
+            item.setTitle("Изменить заголовки").onClick(() => {
                 openHeadersModal();
             });
         })
             .addItem((item) => {
-                item.setTitle("Edit Filters").onClick(() => {
+                item.setTitle("Изменить фильтры").onClick(() => {
                     openFiltersModal();
                 });
             })
             .addSeparator()
             .addItem((item) => {
-                item.setTitle("Export").onClick(() => {
+                item.setTitle("Экспорт").onClick(() => {
                     const link = createEl("a");
                     const file = new Blob(
                         [JSON.stringify(plugin.data.builder)],
@@ -58,7 +58,7 @@
                 });
             })
             .addItem((item) => {
-                item.setTitle("Import").onClick(() => {
+                item.setTitle("Импорт").onClick(() => {
                     //validate;
                     const ajv = new Ajv();
 
@@ -85,7 +85,7 @@
                                     json = JSON.parse(event.target.result);
                                 } catch (e) {
                                     new Notice(
-                                        "There was an issue parsing the file as JSON."
+                                        "Не удалось разобрать файл как JSON."
                                     );
                                 }
                                 if (validate(json)) {
@@ -97,7 +97,7 @@
                                         ...validate.errors.map((e) => e.message)
                                     );
                                     new Notice(
-                                        "This file does not match the builder state schema."
+                                        "Этот файл не соответствует схеме состояния конструктора."
                                     );
                                 }
                             }

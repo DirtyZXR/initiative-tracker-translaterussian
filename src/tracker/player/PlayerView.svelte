@@ -28,6 +28,17 @@
         return "Healthy";
     };
 
+    // Русские подписи состояния здоровья. Ключи совпадают с возвратом getHpStatus,
+    // который также используется как CSS-класс — поэтому сам ключ менять нельзя.
+    const HP_STATUS_RU: Record<string, string> = {
+        Defeated: "Повержен",
+        Bloodied: "Тяжело ранен",
+        Hurt: "Ранен",
+        Healthy: "Здоров"
+    };
+    const hpStatusLabel = (hp: number, max: number) =>
+        HP_STATUS_RU[getHpStatus(hp, max)] ?? "";
+
     const amIActive = (creature: Creature) => {
         if (creature.hidden) return false;
         if (creature.active) return true;
@@ -52,9 +63,9 @@
 <table class="initiative-tracker-table" transition:fade>
     <thead class="tracker-table-header">
         <th style="width:5%"><strong use:iniIcon /></th>
-        <th class="left" style="width:30%"><strong>Name</strong></th>
+        <th class="left" style="width:30%"><strong>Имя</strong></th>
         <th style="width:15%" class="center"><strong use:hpIcon /></th>
-        <th><strong> Statuses </strong></th>
+        <th><strong> Состояния </strong></th>
     </thead>
     <tbody>
         {#each activeAndVisible as creature (creature.id)}
@@ -65,7 +76,7 @@
                         <div
                             class="contains-icon"
                             use:friendIcon
-                            aria-label={`This creature is an ally.`}
+                            aria-label={`Это существо — союзник.`}
                         />
                     {/if}
                     {name(creature)}
@@ -77,7 +88,7 @@
                     {#if creature.player && $data.diplayPlayerHPValues}
                         <div class="center">{@html creature.hpDisplay}</div>
                     {:else}
-                        <span>{getHpStatus(creature.hp, creature.max)}</span>
+                        <span>{hpStatusLabel(creature.hp, creature.max)}</span>
                     {/if}
                 </td>
                 <td class="center">

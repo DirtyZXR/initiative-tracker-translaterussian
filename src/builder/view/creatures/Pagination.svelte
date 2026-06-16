@@ -88,7 +88,7 @@
 <div class="pagination">
     <div class="slicer">
         <div use:slicer />
-        <span>per page</span>
+        <span>на странице</span>
     </div>
     <div class="paginated-container">
         <div class="previous" use:previous />

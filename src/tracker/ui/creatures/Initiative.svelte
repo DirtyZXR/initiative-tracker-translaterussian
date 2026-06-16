@@ -21,7 +21,7 @@
             on:blur={function (evt) {
                 const value = this.value;
                 if (isNaN(Number(value))) {
-                    new Notice("Enter a valid initiative.");
+                    new Notice("Введите корректную инициативу.");
                     this.value = `${initiative}`;
                     return;
                 }

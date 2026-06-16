@@ -55,7 +55,7 @@
 
 <div class="saving-container">
     <div class="saving-encounter">
-        <span>Save encounter as:</span>
+        <span>Сохранить столкновение как:</span>
         <!-- svelte-ignore a11y-autofocus -->
         <input type="text" bind:value={encounterName} on:input={checkSave} />
     </div>
@@ -64,7 +64,7 @@
         {#if checking}
             <span class="checking">
                 <small>
-                    An encounter by that name already exists. Are you sure?
+                    Столкновение с таким именем уже существует. Вы уверены?
                 </small>
             </span>
         {/if}

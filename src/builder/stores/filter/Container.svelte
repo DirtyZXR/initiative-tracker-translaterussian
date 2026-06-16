@@ -29,7 +29,7 @@
 
     const reset = (node: HTMLElement) => {
         new Setting(node)
-            .setName("Restore Default Layout")
+            .setName("Восстановить макет по умолчанию")
             .addExtraButton((b) => {
                 b.setIcon("reset").onClick(() => {
                     filterStore.resetLayout(true);
@@ -37,7 +37,7 @@
             });
     };
     const add = (node: HTMLElement) => {
-        new Setting(node).setName("Add New Filter").addExtraButton((b) => {
+        new Setting(node).setName("Добавить новый фильтр").addExtraButton((b) => {
             b.setIcon("plus-circle").onClick(() => {
                 const id = getId();
                 const filter = {
@@ -59,7 +59,7 @@
         });
     };
     const cancel = (node: HTMLElement) => {
-        new ButtonComponent(node).setButtonText("Cancel").setCta();
+        new ButtonComponent(node).setButtonText("Отмена").setCta();
     };
 </script>
 

@@ -33,7 +33,7 @@
         <div class="initiative-tracker-round-container">
             <small>
                 <em>
-                    Round {$round}
+                    Раунд {$round}
                 </em>
             </small>
         </div>

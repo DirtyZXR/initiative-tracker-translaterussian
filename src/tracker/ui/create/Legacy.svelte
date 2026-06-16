@@ -23,7 +23,7 @@
 
     const add = async (close = true) => {
         if (!creature || !creature.name || !creature.name?.length) {
-            new Notice("Enter a name!");
+            new Notice("Введите имя!");
             return;
         }
         if (!creature.modifier) {
@@ -49,21 +49,21 @@
 
     const addButton = (node: HTMLElement) => {
         new ExtraButtonComponent(node)
-            .setTooltip("Add Creature")
+            .setTooltip("Добавить существо")
             .setIcon("check");
     };
     const editButton = (node: HTMLElement) => {
         new ExtraButtonComponent(node)
-            .setTooltip("Add and Close")
+            .setTooltip("Добавить и закрыть")
             .setIcon("check-circle");
     };
     const cancelButton = (node: HTMLElement) => {
-        new ExtraButtonComponent(node).setTooltip("Cancel").setIcon("cross");
+        new ExtraButtonComponent(node).setTooltip("Отмена").setIcon("cross");
     };
     const diceButton = (node: HTMLElement) => {
         new ExtraButtonComponent(node)
             .setIcon(DICE)
-            .setTooltip("Roll Initiative")
+            .setTooltip("Бросить инициативу")
             .onClick(async () => {
                 creature.initiative = await plugin.getInitiativeValue(
                     creature.modifier
@@ -95,7 +95,7 @@
 <div class="initiative-tracker-editor">
     <div class="create-new">
         <div>
-            <label for="add-name">Creature</label>
+            <label for="add-name">Существо</label>
             <input
                 bind:this={nameInput}
                 bind:value={creature.name}
@@ -109,7 +109,7 @@
             />
         </div>
         <div>
-            <label for="add-display">Display Name</label>
+            <label for="add-display">Отображаемое имя</label>
             <input
                 bind:value={creature.display}
                 id="add-display"
@@ -119,7 +119,7 @@
             />
         </div>
         <div>
-            <label for="add-hp">HP</label>
+            <label for="add-hp">Хиты</label>
             <input
                 bind:value={creature.hp}
                 id="add-hp"
@@ -129,7 +129,7 @@
             />
         </div>
         <div>
-            <label for="add-ac">AC</label>
+            <label for="add-ac">КД</label>
             <input
                 bind:value={creature.ac}
                 id="add-ac"
@@ -138,7 +138,7 @@
             />
         </div>
         <div>
-            <label for="add-mod">Modifier</label>
+            <label for="add-mod">Модификатор</label>
             <input
                 bind:value={creature.modifier}
                 id="add-mod"
@@ -149,7 +149,7 @@
         </div>
 
         <div class="initiative">
-            <label for="add-init">Initiative</label>
+            <label for="add-init">Инициатива</label>
             <input
                 bind:value={creature.initiative}
                 id="add-init"
@@ -161,12 +161,12 @@
         </div>
 
         <div>
-            <label for="add-mod">Hidden</label>
+            <label for="add-mod">Скрыто</label>
             <div use:hideToggle />
         </div>
 
         <div class="amount">
-            <label for="add-init">Amount</label>
+            <label for="add-init">Количество</label>
             <input
                 bind:value={amount}
                 id="add-init"

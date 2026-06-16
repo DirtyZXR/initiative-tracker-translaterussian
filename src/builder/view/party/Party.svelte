@@ -29,9 +29,9 @@
     });
 
     const partyDropdown = (node: HTMLElement) => {
-        new Setting(node).setName("Select a party").addDropdown((dropdown) => {
+        new Setting(node).setName("Выберите отряд").addDropdown((dropdown) => {
             dropdown
-                .addOption("none", "None")
+                .addOption("none", "Нет")
                 .addOptions(
                     Object.fromEntries(parties.map((p) => [p.name, p.name]))
                 )
@@ -89,7 +89,7 @@
         on:toggle={() =>
             (plugin.data.builder.showParty = !plugin.data.builder.showParty)}
     >
-        <h5 class="player-header" slot="title">Players</h5>
+        <h5 class="player-header" slot="title">Игроки</h5>
         <div slot="content">
             <div class="party">
                 {#if parties.length}
@@ -106,8 +106,8 @@
                             <div
                                 class="clickable-icon setting-editor-extra-setting-button"
                                 aria-label={player.enabled
-                                    ? "Disable"
-                                    : "Enable"}
+                                    ? "Отключить"
+                                    : "Включить"}
                                 on:click={() => players.toggleEnabled(player)}
                             >
                                 {#if player.enabled}
@@ -131,10 +131,10 @@
                                 )}
                             min="1"
                         />
-                        <span>Player(s)</span>
+                        <span>Игрок(и)</span>
                         <div use:crossIcon />
 
-                        <span>Level</span>
+                        <span>Уровень</span>
                         <input
                             type="number"
                             value={player.level}
@@ -149,8 +149,8 @@
                             <div
                                 class="clickable-icon setting-editor-extra-setting-button"
                                 aria-label={player.enabled
-                                    ? "Disable"
-                                    : "Enable"}
+                                    ? "Отключить"
+                                    : "Включить"}
                                 on:click={() => players.toggleEnabled(player)}
                             >
                                 {#if player.enabled}

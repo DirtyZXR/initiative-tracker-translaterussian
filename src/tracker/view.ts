@@ -46,7 +46,7 @@ export default class TrackerView extends ItemView {
         return INITIATIVE_TRACKER_VIEW;
     }
     getDisplayText() {
-        return "Initiative Tracker";
+        return "Трекер инициативы";
     }
     getIcon() {
         return BASE;
@@ -297,7 +297,7 @@ export class CreatureView extends ItemView {
     }
 
     getDisplayText(): string {
-        return "Combatant";
+        return "Участник боя";
     }
     getIcon(): string {
         return CREATURE;

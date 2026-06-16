@@ -39,11 +39,11 @@
     const prior = modifier;
     const saveButton = (node: HTMLElement) => {
         new ExtraButtonComponent(node)
-            .setTooltip("Add Creature")
+            .setTooltip("Добавить существо")
             .setIcon("plus")
             .onClick(async () => {
                 if (!creature || !creature.name || !creature.name?.length) {
-                    new Notice("Enter a name!");
+                    new Notice("Введите имя!");
                     return;
                 }
                 try {
@@ -92,11 +92,11 @@
     };
     const editButton = (node: HTMLElement) => {
         new ExtraButtonComponent(node)
-            .setTooltip("Add Creature")
+            .setTooltip("Добавить существо")
             .setIcon("save")
             .onClick(async () => {
                 if (!creature || !creature.name || !creature.name?.length) {
-                    new Notice("Enter a name!");
+                    new Notice("Введите имя!");
                     return;
                 }
                 if (!creature.modifier) {
@@ -118,7 +118,7 @@
                     existing > -1 &&
                     (await confirmWithModal(
                         app,
-                        `This will merge ${creature.name} with ${$adding[existing][0].name}.`
+                        `Это объединит ${creature.name} с ${$adding[existing][0].name}.`
                     ))
                 ) {
                     const index = $adding.findIndex(([k]) => k == creature);
@@ -132,7 +132,7 @@
     };
     const cancelButton = (node: HTMLElement) => {
         new ExtraButtonComponent(node)
-            .setTooltip("Cancel")
+            .setTooltip("Отмена")
             .setIcon("reset")
             .onClick(() => {
                 creature = new Creature({});
@@ -141,7 +141,7 @@
     const diceButton = (node: HTMLElement) => {
         new ExtraButtonComponent(node)
             .setIcon(DICE)
-            .setTooltip("Roll Initiative")
+            .setTooltip("Бросить инициативу")
             .onClick(async () => {
                 creature.initiative = await plugin.getInitiativeValue(
                     creature.modifier
@@ -204,11 +204,11 @@
 <div class="initiative-tracker-editor">
     <div class="create-new">
         <div>
-            <label for="add-name">Creature</label>
+            <label for="add-name">Существо</label>
             <div use:name id="add-name" />
         </div>
         <div>
-            <label for="add-display">Display Name</label>
+            <label for="add-display">Отображаемое имя</label>
             <input
                 bind:value={creature.display}
                 bind:this={displayNameInput}
@@ -219,7 +219,7 @@
             />
         </div>
         <div>
-            <label for="add-hp">HP</label>
+            <label for="add-hp">Хиты</label>
             <input
                 bind:value={creature.hp}
                 id="add-hp"
@@ -229,7 +229,7 @@
             />
         </div>
         <div>
-            <label for="hit-dice">Hit Dice</label>
+            <label for="hit-dice">Кость хитов</label>
             <input
                 bind:value={creature.hit_dice}
                 id="hit-dice"
@@ -239,7 +239,7 @@
             />
         </div>
         <div>
-            <label for="add-ac">AC</label>
+            <label for="add-ac">КД</label>
             <input
                 bind:value={creature.ac}
                 on:change={() => (creature.dirty_ac = true)}
@@ -250,7 +250,7 @@
             />
         </div>
         <div>
-            <label for="add-mod">Modifier</label>
+            <label for="add-mod">Модификатор</label>
             <input
                 bind:value={modifier}
                 id="add-mod"
@@ -261,7 +261,7 @@
         </div>
 
         <div class="initiative">
-            <label for="add-init">Initiative</label>
+            <label for="add-init">Инициатива</label>
             <input
                 bind:value={creature.initiative}
                 id="add-init"
@@ -274,21 +274,21 @@
 
         {#key creature}
             <div>
-                <label for="add-mod">Static Initiative</label>
+                <label for="add-mod">Фиксированная инициатива</label>
                 <div use:staticToggle />
             </div>
             <div>
-                <label for="add-mod">Hidden</label>
+                <label for="add-mod">Скрыто</label>
                 <div use:hideToggle />
             </div>
             <div>
-                <label for="add-mod">Friendly</label>
+                <label for="add-mod">Союзник</label>
                 <div use:friendToggle />
             </div>
         {/key}
 
         <div class="amount">
-            <label for="add-init">Amount</label>
+            <label for="add-init">Количество</label>
             <input
                 bind:value={amount}
                 id="add-init"

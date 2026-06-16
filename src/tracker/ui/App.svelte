@@ -45,11 +45,11 @@
         modal.open();
     };
     const addButton = (node: HTMLElement) => {
-        new ExtraButtonComponent(node).setTooltip("Add Creature").setIcon(ADD);
+        new ExtraButtonComponent(node).setTooltip("Добавить существо").setIcon(ADD);
     };
     const copyButton = (node: HTMLElement) => {
         new ExtraButtonComponent(node)
-            .setTooltip("Copy Initiative Order")
+            .setTooltip("Скопировать порядок инициативы")
             .setIcon(COPY)
             .onClick(async () => {
                 const contents = $ordered
@@ -59,10 +59,10 @@
                     .join("\n");
                 try {
                     await navigator.clipboard.writeText(contents);
-                    new Notice("Initiative order copied to clipboard.");
+                    new Notice("Порядок инициативы скопирован в буфер обмена.");
                 } catch (e) {
                     new Notice(
-                        "Initiative order could not be copied to clipboard."
+                        "Не удалось скопировать порядок инициативы."
                     );
                 }
             });

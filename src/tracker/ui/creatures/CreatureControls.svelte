@@ -23,13 +23,13 @@
     const hamburgerIcon = (node: HTMLElement) => {
         const hamburger = new ExtraButtonComponent(node)
             .setIcon("vertical-three-dots")
-            .setTooltip("Actions");
+            .setTooltip("Действия");
         hamburger.extraSettingsEl.onclick = (evt) => {
             evt.stopPropagation();
             const menu = new Menu();
             menu.addItem((item) => {
                 item.setIcon(HP)
-                    .setTitle("Set Health/Status")
+                    .setTitle("Изменить хиты/состояние")
                     .onClick((e: MouseEvent) => {
                         tracker.updateTarget.set("hp");
                         tracker.setUpdate(creature, e);
@@ -38,7 +38,7 @@
             if (creature.current_ac != creature.ac) {
                 menu.addItem((item) => {
                     item.setIcon(HP)
-                        .setTitle("Reset AC")
+                        .setTitle("Сбросить КД")
                         .onClick((e: MouseEvent) => {
                             creature.current_ac = creature.ac;
                             tracker.updateAndSave();
@@ -47,7 +47,7 @@
             }
             menu.addItem((item) => {
                 item.setIcon("pencil")
-                    .setTitle("Edit")
+                    .setTitle("Изменить")
                     .onClick(() => {
                         dispatch("edit", creature);
                     });
@@ -55,7 +55,7 @@
             if (creature.hidden) {
                 menu.addItem((item) => {
                     item.setIcon("eye")
-                        .setTitle("Show")
+                        .setTitle("Показать")
                         .onClick(() => {
                             tracker.updateCreatures({
                                 creature,
@@ -66,7 +66,7 @@
             } else {
                 menu.addItem((item) => {
                     item.setIcon(HIDDEN)
-                        .setTitle("Hide")
+                        .setTitle("Скрыть")
                         .onClick(() => {
                             tracker.updateCreatures({
                                 creature,
@@ -78,7 +78,7 @@
             if (creature.enabled) {
                 menu.addItem((item) => {
                     item.setIcon(DISABLE)
-                        .setTitle("Disable")
+                        .setTitle("Отключить")
                         .onClick(() => {
                             tracker.updateCreatures({
                                 creature,
@@ -89,7 +89,7 @@
             } else {
                 menu.addItem((item) => {
                     item.setIcon(ENABLE)
-                        .setTitle("Enable")
+                        .setTitle("Включить")
                         .onClick(() => {
                             tracker.updateCreatures({
                                 creature,
@@ -100,7 +100,7 @@
             }
             menu.addItem((item) => {
                 item.setIcon(REMOVE)
-                    .setTitle("Remove")
+                    .setTitle("Удалить")
                     .onClick(() => {
                         tracker.remove(creature);
                     });

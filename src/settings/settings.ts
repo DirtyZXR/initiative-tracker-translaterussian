@@ -41,7 +41,7 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             containerEl.empty();
             containerEl.addClass("initiative-tracker-settings");
 
-            containerEl.createEl("h2", { text: "Initiative Tracker Settings" });
+            containerEl.createEl("h2", { text: "Настройки Initiative Tracker" });
 
             this._displayBase(containerEl.createDiv());
             if (!this.plugin.data.openState) {
@@ -126,18 +126,18 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
         } catch (e) {
             console.error(e);
             new Notice(
-                "There was an error displaying the settings tab for Obsidian Initiative Tracker."
+                "Произошла ошибка при отображении вкладки настроек Obsidian Initiative Tracker."
             );
         }
     }
 
     private _displayBase(containerEl: HTMLDivElement) {
         containerEl.empty();
-        new Setting(containerEl).setHeading().setName("Basic Settings");
+        new Setting(containerEl).setHeading().setName("Основные настройки");
         new Setting(containerEl)
-            .setName("Display Beginner Tips")
+            .setName("Показывать подсказки для новичков")
             .setDesc(
-                "Display instructions in the initiative tracker, helping you get used to the workflow."
+                "Отображать инструкции в трекере инициативы, чтобы помочь освоиться с работой."
             )
             .addToggle((t) => {
                 t.setValue(this.plugin.data.beginnerTips).onChange(
@@ -148,9 +148,9 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                 );
             });
         new Setting(containerEl)
-            .setName("Display Encounter Difficulty")
+            .setName("Показывать сложность столкновения")
             .setDesc(
-                "Display encounter difficulty based on creature CR and player level. Creatures without CR or level will not be considered in the calculation."
+                "Отображать сложность столкновения на основе ПО существ и уровня игроков. Существа без ПО или уровня в расчёт не включаются."
             )
             .addToggle((t) => {
                 t.setValue(this.plugin.data.displayDifficulty).onChange(
@@ -161,9 +161,9 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                 );
             });
         new Setting(containerEl)
-            .setName("Roll Equivalent Creatures Together")
+            .setName("Бросать инициативу для одинаковых существ вместе")
             .setDesc(
-                "Equivalent creatures (same Name and AC) will roll the same initiative by default."
+                "Одинаковые существа (с тем же именем и КД) по умолчанию будут получать одну и ту же инициативу."
             )
             .addToggle((t) => {
                 t.setValue(this.plugin.data.condense).onChange(async (v) => {
@@ -173,9 +173,9 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             });
 
         new Setting(containerEl)
-            .setName("Embed statblock-link content in the Creature View")
+            .setName("Встраивать содержимое statblock-link в окне существа")
             .setDesc(
-                "Prefer embedded content from a statblock-link attribute when present. Fall back to the TTRPG plugin if the link is missing and the plugin is enabled."
+                "Предпочитать встроенное содержимое из атрибута statblock-link, если он указан. Если ссылка отсутствует, а плагин TTRPG включён, использовать его."
             )
             .addToggle((t) => {
                 t.setValue(this.plugin.data.preferStatblockLink).onChange(
@@ -192,12 +192,12 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             this.plugin.data.openState.battle = additionalContainer.open;
         };
         const summary = additionalContainer.createEl("summary");
-        new Setting(summary).setHeading().setName("Battle");
+        new Setting(summary).setHeading().setName("Бой");
         summary.createDiv("collapser").createDiv("handle");
         new Setting(additionalContainer)
-            .setName("Clamp Minimum HP")
+            .setName("Ограничивать минимальные хиты")
             .setDesc(
-                "When a creature takes damage that would reduce its HP below 0, its HP is set to 0 instead."
+                "Когда существо получает урон, который опустил бы его хиты ниже 0, хиты вместо этого устанавливаются в 0."
             )
             .addToggle((t) => {
                 t.setValue(this.plugin.data.clamp).onChange(async (v) => {
@@ -206,14 +206,14 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                 });
             });
         new Setting(additionalContainer)
-            .setName("Overflow Healing")
+            .setName("Избыточное лечение")
             .setDesc(
-                "Set what happens to healing which goes above creatures' max HP threshold."
+                "Задаёт, что происходит с лечением, превышающим максимум хитов существа."
             )
             .addDropdown((d) => {
-                d.addOption(OVERFLOW_TYPE.ignore, "Ignore");
-                d.addOption(OVERFLOW_TYPE.temp, "Add to temp HP");
-                d.addOption(OVERFLOW_TYPE.current, "Add to current HP");
+                d.addOption(OVERFLOW_TYPE.ignore, "Игнорировать");
+                d.addOption(OVERFLOW_TYPE.temp, "Добавлять во временные хиты");
+                d.addOption(OVERFLOW_TYPE.current, "Добавлять в текущие хиты");
                 d.setValue(this.plugin.data.hpOverflow ?? OVERFLOW_TYPE.ignore);
                 d.onChange(async (v) => {
                     this.plugin.data.hpOverflow = v;
@@ -221,9 +221,9 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                 });
             });
         new Setting(additionalContainer)
-            .setName("Automatic Unconscious Status Application")
+            .setName("Автоматически применять состояние «Без сознания»")
             .setDesc(
-                'When a creature takes damage that would reduce its HP below 0, it gains the "Unconscious" status effect.'
+                'Когда существо получает урон, который опустил бы его хиты ниже 0, оно получает состояние «Без сознания».'
             )
             .addToggle((t) => {
                 t.setValue(this.plugin.data.autoStatus).onChange(async (v) => {
@@ -232,9 +232,9 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                 });
             });
         new Setting(additionalContainer)
-            .setName("Additive Temporary HP")
+            .setName("Суммировать временные хиты")
             .setDesc(
-                "Any temporary HP added to a creature will be added on top of existing temporary HP."
+                "Любые временные хиты, добавленные существу, будут прибавляться к уже имеющимся временным хитам."
             )
             .addToggle((t) => {
                 t.setValue(this.plugin.data.additiveTemp).onChange(
@@ -245,9 +245,9 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                 );
             });
         new Setting(additionalContainer)
-            .setName("Display Player HP in Player View")
+            .setName("Показывать хиты игроков в окне игрока")
             .setDesc(
-                "If turned off, player health will display as 'Healthy', 'Hurt', etc."
+                "Если отключено, здоровье игрока будет отображаться как «Здоров», «Ранен» и т. п."
             )
             .addToggle((t) => {
                 t.setValue(this.plugin.data.diplayPlayerHPValues).onChange(
@@ -258,15 +258,15 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                 );
             });
         new Setting(additionalContainer)
-            .setName("Roll HP for Creatures")
+            .setName("Бросать хиты для существ")
             .setDesc(
                 createFragment((e) => {
                     e.createSpan({
-                        text: "Creatures added to encounters will automatically roll for HP if the "
+                        text: "Существа, добавляемые в столкновения, будут автоматически бросать хиты, если у существа задано свойство "
                     });
                     e.createEl("code", { text: "hit_dice" });
                     e.createSpan({
-                        text: " property is set for the creature."
+                        text: "."
                     });
                 })
             )
@@ -278,9 +278,9 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             });
 
         new Setting(additionalContainer)
-            .setName("Log Battles")
+            .setName("Вести журнал боёв")
             .setDesc(
-                "Actions taken during battle will be logged to the specified log folder."
+                "Действия, совершаемые во время боя, будут записываться в указанную папку журнала."
             )
             .addToggle((t) =>
                 t.setValue(this.plugin.data.logging).onChange(async (v) => {
@@ -293,14 +293,14 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             this.plugin.data.logFolder
         );
         new Setting(additionalContainer)
-            .setName("Log Folder")
+            .setName("Папка журнала")
             .setDesc(
                 createFragment(async (e) => {
                     e.createSpan({
-                        text: "A new note will be created in this folder for each battle."
+                        text: "В этой папке для каждого боя будет создаваться новая заметка."
                     });
                     e.createEl("br");
-                    e.createSpan({ text: "Current: " });
+                    e.createSpan({ text: "Текущая: " });
                     e.createEl("code", { text: this.plugin.data.logFolder });
 
                     if (!exists) {
@@ -310,7 +310,7 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                         );
                         setIcon(container, "initiative-tracker-warning");
                         container.createSpan({
-                            text: "This folder does not exist and will be created when a log file is written for the first time."
+                            text: "Эта папка не существует и будет создана при первой записи файла журнала."
                         });
                     }
                 })
@@ -332,14 +332,14 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                 });
             });
         new Setting(additionalContainer)
-            .setName("Resolve Initiative Ties")
+            .setName("Разрешение совпадений инициативы")
             .setDesc(
-                "Define what happens if two creatures have the same initiative."
+                "Определяет, что происходит, если у двух существ одинаковая инициатива."
             )
             .addDropdown((d) => {
-                d.addOption(RESOLVE_TIES.playerFirst, "Player first");
-                d.addOption(RESOLVE_TIES.npcFirst, "NPC first");
-                d.addOption(RESOLVE_TIES.random, "Random");
+                d.addOption(RESOLVE_TIES.playerFirst, "Сначала игрок");
+                d.addOption(RESOLVE_TIES.npcFirst, "Сначала НИП");
+                d.addOption(RESOLVE_TIES.random, "Случайно");
                 d.setValue(
                     this.plugin.data.resolveTies ?? RESOLVE_TIES.playerFirst
                 );
@@ -355,16 +355,16 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             this.plugin.data.openState.player = additionalContainer.open;
         };
         const summary = additionalContainer.createEl("summary");
-        new Setting(summary).setHeading().setName("Players");
+        new Setting(summary).setHeading().setName("Игроки");
         summary.createDiv("collapser").createDiv("handle");
         new Setting(additionalContainer)
-            .setName("Add New Player")
+            .setName("Добавить нового игрока")
             .setDesc(
-                "Players added here will be available to add to a party. If you do not have a party created, all players will be added to a new encounter."
+                "Добавленные здесь игроки будут доступны для добавления в отряд. Если у вас нет созданного отряда, все игроки будут добавлены в новое столкновение."
             )
             .addButton((button: ButtonComponent): ButtonComponent => {
                 let b = button
-                    .setTooltip("Add Player")
+                    .setTooltip("Добавить игрока")
                     .setButtonText("+")
                     .onClick(async () => {
                         const modal = new NewPlayerModal(this.plugin);
@@ -393,18 +393,18 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                     }
                 })
                 .createSpan({
-                    text: "No saved players! Create one to see it here."
+                    text: "Нет сохранённых игроков! Создайте игрока, чтобы увидеть его здесь."
                 });
         } else {
             const headers = playerView.createDiv(
                 "initiative-tracker-player headers"
             );
 
-            headers.createDiv({ text: "Name" });
+            headers.createDiv({ text: "Имя" });
             setIcon(
                 headers.createDiv({
                     attr: {
-                        "aria-label": "Level"
+                        "aria-label": "Уровень"
                     }
                 }),
                 "swords"
@@ -412,7 +412,7 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             setIcon(
                 headers.createDiv({
                     attr: {
-                        "aria-label": "Max HP"
+                        "aria-label": "Макс. хиты"
                     }
                 }),
                 HP
@@ -420,7 +420,7 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             setIcon(
                 headers.createDiv({
                     attr: {
-                        "aria-label": "Armor Class"
+                        "aria-label": "Класс доспеха"
                     }
                 }),
                 AC
@@ -428,7 +428,7 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             setIcon(
                 headers.createDiv({
                     attr: {
-                        "aria-label": "Initiative Modifier"
+                        "aria-label": "Модификатор инициативы"
                     }
                 }),
                 INITIATIVE
@@ -457,7 +457,7 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                 );
                 new ExtraButtonComponent(icons.createDiv())
                     .setIcon("pencil")
-                    .setTooltip("Edit")
+                    .setTooltip("Изменить")
                     .onClick(() => {
                         const modal = new NewPlayerModal(this.plugin, player);
                         modal.open();
@@ -473,7 +473,7 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                     });
                 new ExtraButtonComponent(icons.createDiv())
                     .setIcon("trash")
-                    .setTooltip("Delete")
+                    .setTooltip("Удалить")
                     .onClick(async () => {
                         this.plugin.deletePlayer(player);
 
@@ -501,7 +501,7 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                 const icons = playerDiv.createDiv({
                     cls: "initiative-tracker-player-icon imported",
                     attr: {
-                        "aria-label": "Imported from Fantasy Statblocks"
+                        "aria-label": "Импортировано из Fantasy Statblocks"
                     }
                 });
                 setIcon(icons, "heart-handshake");
@@ -514,23 +514,23 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             this.plugin.data.openState.player = additionalContainer.open;
         };
         const summary = additionalContainer.createEl("summary");
-        new Setting(summary).setHeading().setName("Encounters");
+        new Setting(summary).setHeading().setName("Столкновения");
         summary.createDiv("collapser").createDiv("handle");
         const explanation = additionalContainer.createDiv(
             "initiative-tracker-explanation"
         );
         explanation.createEl("span", {
-            text: "The encounter builder allows you to quickly create encounters that can be saved for later use or immediately launched into a battle."
+            text: "Конструктор столкновений позволяет быстро создавать столкновения, которые можно сохранить для дальнейшего использования или сразу запустить в бой."
         });
         explanation.createEl("br");
         explanation.createEl("br");
         explanation.createEl("span", {
-            text: "It can be opened using the sidebar shortcut (if enabled) or by using the Open Encounter Builder command."
+            text: "Его можно открыть кнопкой на боковой панели (если включена) или командой «Открыть конструктор столкновений»."
         });
         new Setting(additionalContainer)
-            .setName("Add Sidebar Shortcut")
+            .setName("Добавить кнопку на боковую панель")
             .setDesc(
-                "A sidebar shortcut will be added to open the Encounter Builder."
+                "На боковую панель будет добавлена кнопка для открытия конструктора столкновений."
             )
             .addToggle((t) => {
                 t.setValue(this.plugin.data.builder.sidebarIcon).onChange(
@@ -541,8 +541,8 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                 );
             });
         new Setting(additionalContainer)
-            .setName("XP System")
-            .setDesc("XP system to use for encounters")
+            .setName("Система опыта")
+            .setDesc("Система опыта, используемая для столкновений")
             .addDropdown((d) => {
                 Object.values(RpgSystemSetting).forEach((system) =>
                     d.addOption(
@@ -560,7 +560,7 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             });
 
         const additional = additionalContainer.createDiv("additional");
-        new Setting(additional).setHeading().setName("Saved Encounters");
+        new Setting(additional).setHeading().setName("Сохранённые столкновения");
         if (!Object.keys(this.plugin.data.encounters).length) {
             additional
                 .createDiv({
@@ -569,7 +569,7 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                     }
                 })
                 .createSpan({
-                    text: "No saved encounters! Create one to see it here."
+                    text: "Нет сохранённых столкновений! Создайте столкновение, чтобы увидеть его здесь."
                 });
         } else {
             for (const [name, encounter] of Object.entries(
@@ -591,13 +591,13 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
 
                             if (players.length) {
                                 e.createSpan({
-                                    text: `Players: ${players.join(", ")}`
+                                    text: `Игроки: ${players.join(", ")}`
                                 });
                                 e.createEl("br");
                             }
                             if (creatures.length) {
                                 e.createSpan({
-                                    text: `Creatures: ${creatures.join(", ")}`
+                                    text: `Существа: ${creatures.join(", ")}`
                                 });
                                 e.createEl("br");
                             }
@@ -627,26 +627,26 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             this.plugin.data.openState.party = additionalContainer.open;
         };
         const summary = additionalContainer.createEl("summary");
-        new Setting(summary).setHeading().setName("Parties");
+        new Setting(summary).setHeading().setName("Отряды");
         summary.createDiv("collapser").createDiv("handle");
         const explanation = additionalContainer.createDiv(
             "initiative-tracker-explanation"
         );
         explanation.createEl("span", {
-            text: "Parties allow you to create different groups of your players. Each player can be a member of multiple parties."
+            text: "Отряды позволяют создавать разные группы игроков. Каждый игрок может состоять в нескольких отрядах."
         });
         explanation.createEl("br");
         explanation.createEl("br");
         explanation.createEl("span", {
-            text: "You can set a default party for encounters to use, or specify the party for the encounter in the encounter block. While running an encounter in the tracker, you can change the active party, allowing you to quickly switch which players are in combat."
+            text: "Вы можете задать отряд по умолчанию для столкновений или указать отряд для столкновения в его блоке. Во время прохождения столкновения в трекере можно сменить активный отряд, что позволяет быстро переключать, какие игроки участвуют в бою."
         });
         new Setting(additionalContainer)
-            .setName("Default Party")
+            .setName("Отряд по умолчанию")
             .setDesc(
-                "The tracker will load this party to encounters by default."
+                "Трекер будет по умолчанию загружать этот отряд в столкновения."
             )
             .addDropdown((d) => {
-                d.addOption("none", "None");
+                d.addOption("none", "Нет");
                 for (const party of this.plugin.data.parties) {
                     d.addOption(party.name, party.name);
                 }
@@ -657,10 +657,10 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                 });
             });
         new Setting(additionalContainer)
-            .setName("Add New Party")
+            .setName("Добавить новый отряд")
             .addButton((button: ButtonComponent): ButtonComponent => {
                 let b = button
-                    .setTooltip("Add Party")
+                    .setTooltip("Добавить отряд")
                     .setButtonText("+")
                     .onClick(async () => {
                         const modal = new PartyModal(this.plugin);
@@ -705,7 +705,7 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                     }
                 })
                 .createSpan({
-                    text: "No saved parties! Create one to see it here."
+                    text: "Нет сохранённых отрядов! Создайте отряд, чтобы увидеть его здесь."
                 });
         } else {
             for (const party of this.plugin.data.parties) {
@@ -781,12 +781,12 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             this.plugin.data.openState.status = additionalContainer.open;
         };
         const summary = additionalContainer.createEl("summary");
-        new Setting(summary).setHeading().setName("Statuses");
+        new Setting(summary).setHeading().setName("Состояния");
 
         new Setting(additionalContainer)
-            .setName("Unconscious Status")
+            .setName("Состояние «Без сознания»")
             .setDesc(
-                "Choose a different status to be used as the default Unconscious status."
+                "Выберите другое состояние, используемое по умолчанию как «Без сознания»."
             )
             .addDropdown((d) => {
                 for (const status of this.plugin.data.statuses) {
@@ -797,11 +797,11 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             });
         summary.createDiv("collapser").createDiv("handle");
         const add = new Setting(additionalContainer)
-            .setName("Add New Status")
-            .setDesc("These statuses will be available to apply to creatures.")
+            .setName("Добавить новое состояние")
+            .setDesc("Эти состояния можно будет применять к существам.")
             .addButton((button: ButtonComponent): ButtonComponent => {
                 let b = button
-                    .setTooltip("Add Status")
+                    .setTooltip("Добавить состояние")
                     .setButtonText("+")
                     .onClick(async () => {
                         const modal = new StatusModal(this.plugin);
@@ -838,7 +838,7 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             add.addExtraButton((b) =>
                 b
                     .setIcon("reset")
-                    .setTooltip("Re-add Default Statuses")
+                    .setTooltip("Восстановить состояния по умолчанию")
                     .onClick(async () => {
                         this.plugin.data.statuses = Array.from(
                             new Map(
@@ -866,7 +866,7 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                             setIcon(
                                 div.createDiv({
                                     attr: {
-                                        "aria-label": "Reset Each Round"
+                                        "aria-label": "Сбрасывается каждый раунд"
                                     }
                                 }),
                                 "timer-reset"
@@ -876,7 +876,7 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                             setIcon(
                                 div.createDiv({
                                     attr: {
-                                        "aria-label": "Has Amount"
+                                        "aria-label": "Имеет количество"
                                     }
                                 }),
                                 "hash"
@@ -947,31 +947,31 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             this.plugin.data.openState.plugin = containerEl.open;
         };
         const summary = containerEl.createEl("summary");
-        new Setting(summary).setHeading().setName("Plugin Integrations");
+        new Setting(summary).setHeading().setName("Интеграции с плагинами");
         summary.createDiv("collapser").createDiv("handle");
         if (!this.plugin.canUseStatBlocks) {
             this.plugin.data.sync = false;
             await this.plugin.saveSettings();
         }
         new Setting(containerEl)
-            .setName("Sync Monsters from Fantasy Statblocks")
+            .setName("Синхронизировать монстров из Fantasy Statblocks")
             .setDesc(
                 createFragment((e) => {
                     e.createSpan({
-                        text: "Homebrew creatures saved to the Fantasy Statblocks plugin will be available to use."
+                        text: "Самодельные существа, сохранённые в плагине Fantasy Statblocks, будут доступны для использования."
                     });
                     if (!this.plugin.canUseStatBlocks) {
                         e.createEl("br");
                         e.createEl("br");
                         e.createSpan({
-                            text: "Install and enable the "
+                            text: "Установите и включите плагин "
                         });
                         e.createEl("a", {
                             text: "Fantasy Statblocks",
                             href: "obsidian://show-plugin?id=obsidian-5e-statblocks"
                         });
                         e.createSpan({
-                            text: " plugin to use homebrew creatures."
+                            text: ", чтобы использовать самодельных существ."
                         });
                     }
                 })
@@ -988,23 +988,23 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
             });
         if (this.plugin.data.sync) {
             const synced = new Setting(containerEl).setDesc(
-                `${this.plugin.bestiary.length} creatures synced.`
+                `Синхронизировано существ: ${this.plugin.bestiary.length}.`
             );
             synced.settingEl.addClass("initiative-synced");
             setIcon(synced.nameEl, "check-in-circle");
-            synced.nameEl.appendChild(createSpan({ text: "Synced" }));
+            synced.nameEl.appendChild(createSpan({ text: "Синхронизировано" }));
         }
 
         new Setting(containerEl)
-            .setName("Initiative Formula")
+            .setName("Формула инициативы")
             .setDesc(
                 createFragment((e) => {
                     e.createSpan({
-                        text: "Initiative formula to use when calculating initiative. Use "
+                        text: "Формула, используемая при расчёте инициативы. Используйте "
                     });
                     e.createEl("code", { text: "%mod%" });
                     e.createSpan({
-                        text: " for the modifier placeholder."
+                        text: " как плейсхолдер модификатора."
                     });
                     if (!this.plugin.canUseDiceRoller) {
                         e.createEl("br");
@@ -1013,7 +1013,7 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                             attr: {
                                 style: `color: var(--text-error);`
                             },
-                            text: "Requires the "
+                            text: "Требуется плагин "
                         });
                         e.createEl("a", {
                             text: "Dice Roller",
@@ -1024,7 +1024,7 @@ export default class InitiativeTrackerSettings extends PluginSettingTab {
                             attr: {
                                 style: `color: var(--text-error);`
                             },
-                            text: " plugin to modify."
+                            text: " для изменения."
                         });
                     }
                 })
@@ -1066,12 +1066,12 @@ class NewPlayerModal extends Modal {
         let error = false;
 
         contentEl.createEl("h2", {
-            text: this.original ? "Edit Player" : "New Player"
+            text: this.original ? "Изменить игрока" : "Новый игрок"
         });
 
         new Setting(contentEl)
-            .setName("Link to Note")
-            .setDesc("Link player to a note in your vault.")
+            .setName("Привязать к заметке")
+            .setDesc("Связать игрока с заметкой в вашем хранилище.")
             .addText((t) => {
                 t.setValue(this.player.note ?? "");
 
@@ -1111,8 +1111,8 @@ class NewPlayerModal extends Modal {
             modInput: InputValidate;
 
         new Setting(contentEl)
-            .setName("Name")
-            .setDesc("Player name. Must be unique!")
+            .setName("Имя")
+            .setDesc("Имя игрока. Должно быть уникальным!")
             .addText((t) => {
                 nameInput = {
                     input: t.inputEl,
@@ -1136,8 +1136,8 @@ class NewPlayerModal extends Modal {
                 });
             });
         new Setting(contentEl)
-            .setName("Level")
-            .setDesc("Player level.")
+            .setName("Уровень")
+            .setDesc("Уровень игрока.")
             .addText((t) => {
                 levelInput = {
                     input: t.inputEl,
@@ -1156,7 +1156,7 @@ class NewPlayerModal extends Modal {
                     this.player.level = Number(v);
                 });
             });
-        new Setting(contentEl).setName("Max Hit Points").addText((t) => {
+        new Setting(contentEl).setName("Максимум хитов").addText((t) => {
             hpInput = {
                 input: t.inputEl,
                 validate: (i: HTMLInputElement) => {
@@ -1174,15 +1174,15 @@ class NewPlayerModal extends Modal {
                 this.player.hp = Number(v);
             });
         });
-        new Setting(contentEl).setName("Armor Class").addText((t) => {
+        new Setting(contentEl).setName("Класс доспеха").addText((t) => {
             t.setValue(`${this.player.ac ?? ""}`);
             t.onChange((v) => {
                 this.player.ac = v;
             });
         });
         new Setting(contentEl)
-            .setName("Initiative Modifier")
-            .setDesc("This will be added to randomly-rolled initiatives.")
+            .setName("Модификатор инициативы")
+            .setDesc("Будет прибавляться к случайно брошенной инициативе.")
             .addText((t) => {
                 modInput = {
                     input: t.inputEl,
@@ -1204,7 +1204,7 @@ class NewPlayerModal extends Modal {
         let footerEl = contentEl.createDiv();
         let footerButtons = new Setting(footerEl);
         footerButtons.addButton((b) => {
-            b.setTooltip("Save")
+            b.setTooltip("Сохранить")
                 .setIcon("checkmark")
                 .onClick(async () => {
                     let error = this.validateInputs(
@@ -1213,7 +1213,7 @@ class NewPlayerModal extends Modal {
                         modInput
                     );
                     if (error) {
-                        new Notice("Fix errors before saving.");
+                        new Notice("Исправьте ошибки перед сохранением.");
                         return;
                     }
                     this.saved = true;
@@ -1223,7 +1223,7 @@ class NewPlayerModal extends Modal {
         });
         footerButtons.addExtraButton((b) => {
             b.setIcon("cross")
-                .setTooltip("Cancel")
+                .setTooltip("Отмена")
                 .onClick(() => {
                     this.saved = false;
                     this.close();
@@ -1257,8 +1257,8 @@ export async function confirmWithModal(
     app: App,
     text: string,
     buttons: { cta: string; secondary: string } = {
-        cta: "Yes",
-        secondary: "No"
+        cta: "Да",
+        secondary: "Нет"
     }
 ): Promise<boolean> {
     return new Promise((resolve, reject) => {
@@ -1331,10 +1331,10 @@ class StatusModal extends Modal {
     }
     warned = false;
     onOpen() {
-        this.titleEl.setText(this.editing ? "Edit Status" : "New Status");
+        this.titleEl.setText(this.editing ? "Изменить состояние" : "Новое состояние");
         this.contentEl.empty();
         const name = new Setting(this.contentEl)
-            .setName("Name")
+            .setName("Имя")
             .addText((t) => {
                 t.setValue(this.status.name).onChange((v) => {
                     this.status.name = v;
@@ -1356,7 +1356,7 @@ class StatusModal extends Modal {
                                     "initiative-tracker-warning"
                                 );
                                 container.createSpan({
-                                    text: "A status by this name already exists and will be overwritten."
+                                    text: "Состояние с таким именем уже существует и будет перезаписано."
                                 });
                             })
                         );
@@ -1366,15 +1366,15 @@ class StatusModal extends Modal {
                     }
                 });
             });
-        new Setting(this.contentEl).setName("Description").addTextArea((t) => {
+        new Setting(this.contentEl).setName("Описание").addTextArea((t) => {
             t.setValue(this.status.description).onChange(
                 (v) => (this.status.description = v)
             );
         });
         new Setting(this.contentEl)
-            .setName("Remove Each Round")
+            .setName("Удалять каждый раунд")
             .setDesc(
-                "This status will be removed from all creatures at the start of a new round."
+                "Это состояние будет снято со всех существ в начале нового раунда."
             )
             .addToggle((t) =>
                 t
@@ -1382,9 +1382,9 @@ class StatusModal extends Modal {
                     .onChange((v) => (this.status.resetOnRound = v))
             );
         new Setting(this.contentEl)
-            .setName("Has Amount")
+            .setName("Имеет количество")
             .setDesc(
-                "This status has an amount that can be increased or decreased during combat."
+                "Это состояние имеет количество, которое можно увеличивать или уменьшать во время боя."
             )
             .addToggle((t) =>
                 t.setValue(this.status.hasAmount).onChange((v) => {
@@ -1394,8 +1394,8 @@ class StatusModal extends Modal {
             );
         if (this.status.hasAmount) {
             new Setting(this.contentEl)
-                .setName("Starting Amount")
-                .setDesc("The status will default to this amount when added.")
+                .setName("Начальное количество")
+                .setDesc("При добавлении состояние получит это количество по умолчанию.")
                 .addText(
                     (t) =>
                         (t
@@ -1410,7 +1410,7 @@ class StatusModal extends Modal {
         new ButtonComponent(
             this.contentEl.createDiv("initiative-tracker-cancel")
         )
-            .setButtonText("Cancel")
+            .setButtonText("Отмена")
             .onClick(() => {
                 this.canceled = true;
                 this.close();
@@ -1437,11 +1437,11 @@ class PartyModal extends Modal {
     }
     onOpen(): void {
         this.titleEl.setText(
-            this.editing ? `Edit ${this.party.name ?? "Party"}` : "New Party"
+            this.editing ? `Изменить ${this.party.name ?? "Отряд"}` : "Новый отряд"
         );
 
         const name = new Setting(this.contentEl)
-            .setName("Name")
+            .setName("Имя")
             .addText((t) => {
                 t.setValue(this.party.name).onChange((v) => {
                     this.party.name = v;
@@ -1463,7 +1463,7 @@ class PartyModal extends Modal {
                                     "initiative-tracker-warning"
                                 );
                                 container.createSpan({
-                                    text: "A party by this name already exists and will be overwritten."
+                                    text: "Отряд с таким именем уже существует и будет перезаписан."
                                 });
                             })
                         );
@@ -1479,7 +1479,7 @@ class PartyModal extends Modal {
         );
         let playerText: TextComponent;
         new Setting(playersEl)
-            .setName("Add Player to Party")
+            .setName("Добавить игрока в отряд")
             .addText((t) => {
                 playerText = t;
                 const modal = new PlayerSuggestionModal(this.plugin.app, t, [
@@ -1494,12 +1494,12 @@ class PartyModal extends Modal {
                     if (!playerText.getValue() || !playerText.getValue().length)
                         return;
                     if (this.party.players.includes(playerText.getValue())) {
-                        new Notice("That player is already in this party!");
+                        new Notice("Этот игрок уже состоит в отряде!");
                         return;
                     }
                     if (!this.plugin.players.has(playerText.getValue())) {
                         new Notice(
-                            "That player doesn't exist! You should make them first."
+                            "Такого игрока не существует! Сначала создайте его."
                         );
                         return;
                     }
@@ -1514,7 +1514,7 @@ class PartyModal extends Modal {
         new ButtonComponent(
             this.contentEl.createDiv("initiative-tracker-cancel")
         )
-            .setButtonText("Cancel")
+            .setButtonText("Отмена")
             .onClick(() => {
                 this.canceled = true;
                 this.close();
@@ -1542,7 +1542,7 @@ class PartyModal extends Modal {
                     }
                 })
                 .createSpan({
-                    text: "Add a player to the party to see it here."
+                    text: "Добавьте игрока в отряд, чтобы увидеть его здесь."
                 });
         }
     }
